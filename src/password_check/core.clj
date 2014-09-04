@@ -1,9 +1,9 @@
 (ns password-check.core
   (:require [clojure.contrib.string :as string]
-            [password-check.util :refer (combine-checkers-or not-nil?)]))
+            [password-check.util :as util]))
 
 (defn- in-range? [n min max] (and (>= n min) (< n max)))
-(defn- re-contains? [re s] (not-nil? (re-find re s)))
+(defn- re-contains? [re s] (util/not-nil? (re-find re s)))
 
 ; blank checker
 (def not-blank? (comp not string/blank?))
@@ -13,7 +13,7 @@
 
 (def contains-lowercase? (partial re-contains? #"[a-z]"))
 
-(def contains-alphabet? (combine-checkers-or contains-lowercase? contains-uppercase?))
+(def contains-alphabet? (util/combine-checkers-or contains-lowercase? contains-uppercase?))
 
 ; number checker
 (def contains-number? (partial re-contains? #"[0-9]"))
@@ -22,7 +22,7 @@
 (defn contains-symbol?
   "return boolean whether password contain symbols or not"
   [password]
-  (not-nil?
+  (util/not-nil?
     (some #(let [in? (partial in-range? (int %))]
              (or (in? 33 48) (in? 58 65) (in? 91 96) (in? 123 127)))
           password)))
@@ -34,7 +34,7 @@
       ; false"
   [password]
   (if-let [c (first password)]
-    (not-nil? (some #(not= % c) password))
+    (util/not-nil? (some #(not= % c) password))
     false))
 
 (defn not-sequential-password?
