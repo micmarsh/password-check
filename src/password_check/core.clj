@@ -2,8 +2,6 @@
   (:require [clojure.contrib.string :as string]
             [password-check.util :refer (combine-checkers-or not-nil?)]))
 
-(def ^{:doc "return last checker function name"} last-checker (ref nil))
-
 (defn- in-range? [n min max] (and (>= n min) (< n max)))
 (defn- re-contains? [re s] (not-nil? (re-find re s)))
 
