@@ -1,5 +1,5 @@
-(ns clj-password-check.test.core
-  (:use [clj-password-check.core] :reload)
+(ns password-check.test.core
+  (:use [password-check.core] :reload)
   (:use [clojure.test]))
 
 (deftest test-combine-checkers-or

@@ -1,6 +1,5 @@
-(ns clj-password-check.core
-  (:require [clojure.contrib.string :as string])
-  )
+(ns password-check.core
+  (:require [clojure.contrib.string :as string]))
 
 (def ^{:doc "return last checker function name"} last-checker (ref nil))
 

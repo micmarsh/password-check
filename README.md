@@ -1,4 +1,4 @@
-# clj-password-check
+# password-check
 
 password checker library for clojure
 
