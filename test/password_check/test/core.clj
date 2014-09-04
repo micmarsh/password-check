@@ -100,5 +100,9 @@
     true  (not-contains-multi-byte-character? "123")
     true  (not-contains-multi-byte-character? "")))
 
-; (deftest test-not-contains-sequence?
-;   (are ))
+(deftest test-not-contains-sequence?
+  (equal-pairs
+    true (not-contains-sequence? "12458")
+    false (not-contains-sequence? "hello123")
+    false (not-contains-sequence? "12abc3")
+    false (not-contains-sequence? "heyyouabcdefgh")))

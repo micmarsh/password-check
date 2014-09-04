@@ -38,7 +38,7 @@
     false))
 
 (defn not-sequential-password?
-  "return boolean whether password is not sequencial or not
+  "return boolean whether password is not sequential or not
   ex) (not-sequential-password? \"abcdefg\")
       ; false (this is sequencial password)"
   [password]
@@ -47,7 +47,7 @@
       (not (or (every? #(= -1 %) l) (every? #(= 1 %) l))))))
 
 (defn- substring-check [checker? password]
-  (some checker? (util/all-substrings password 3)))
+  (empty? (remove checker? (util/all-substrings password 3))))
 
 (def not-contains-sequence? (partial substring-check not-sequential-password?))
 (def not-contains-repeats? (partial substring-check not-same-characters?))
