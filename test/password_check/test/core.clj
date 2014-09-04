@@ -1,6 +1,7 @@
 (ns password-check.test.core
-  (:use [password-check.core] :reload)
-  (:use [clojure.test]))
+  (:use password-check.core
+        password-check.util
+        clojure.test))
 
 (deftest test-combine-checkers-or
   (let [f (combine-checkers-or string? number?)]

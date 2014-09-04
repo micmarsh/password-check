@@ -1,25 +1,15 @@
 (ns password-check.core
-  (:require [clojure.contrib.string :as string]))
+  (:require [clojure.contrib.string :as string]
+            [password-check.util :refer (combine-checkers-or not-nil?)]))
 
 (def ^{:doc "return last checker function name"} last-checker (ref nil))
 
-(defn- not-nil? [b] (-> b nil? not))
 (defn- in-range? [n min max] (and (>= n min) (< n max)))
 (defn- re-contains? [re s] (not-nil? (re-find re s)))
-(defn- set-last-checker [f] (dosync (ref-set last-checker (-> f meta :name))))
-
-(defn combine-checkers-or
-  "return function which combining checker functions with OR operator"
-  [& fns] (fn [s] (not-nil? (some #(do (set-last-checker %) (% s)) fns))))
-(defn combine-checkers-and
-  "return function whick combining checker functions with AND operator"
-  [& fns] (fn [s] (every? #(do (set-last-checker %) (% s)) fns)))
-(def ^{:doc "same as checker-combine-and" :arglists '([& fns])}
-  combine-checkers combine-checkers-and)
 
 ; blank checker
 (defn not-blank?
-  "return boolean whether passowrd is blank or not"
+  "return boolean whether password is blank or not"
   [s] (-> s string/blank? not))
 
 ; alphabet checker
