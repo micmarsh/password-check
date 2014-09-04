@@ -46,6 +46,12 @@
     (if (empty? l) true
       (not (or (every? #(= -1 %) l) (every? #(= 1 %) l))))))
 
+(defn- substring-check [checker? password]
+  (some checker? (util/all-substrings password 3)))
+
+(def not-contains-sequence? (partial substring-check not-sequential-password?))
+(def not-contains-repeats? (partial substring-check not-same-characters?))
+
 ; multi byte character checker
 ; cf. http://www.alqmst.co.jp/tech/040601.html
 (defn not-contains-multi-byte-character?

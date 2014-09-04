@@ -3,22 +3,26 @@
         password-check.util
         clojure.test))
 
+(defmacro equal-pairs [& body]
+  `(are [x y] (= x y)
+    ~@body))
+
 (deftest test-combine-checkers-or
   (let [f (combine-checkers-or string? number?)]
-    (are [x y] (= x y)
+    (equal-pairs
       true  (f "str")
       true  (f 12)
       false (f '(1 2)))))
 
 (deftest test-combine-checkers-and
   (let [f (combine-checkers-and string? (fn [s] (= \a (first s))))]
-    (are [x y] (= x y)
+    (equal-pairs
       true  (f "abc")
       false (f "bac")
       false (f 123))))
 
 (deftest test-contains-uppercase?
-  (are [x y] (= x y)
+  (equal-pairs
     true  (contains-uppercase? "A")
     false (contains-uppercase? "a")
     false (contains-uppercase? "0")
@@ -26,7 +30,7 @@
     false (contains-uppercase? "")))
 
 (deftest test-contains-lowercase?
-  (are [x y] (= x y)
+  (equal-pairs
     false (contains-lowercase? "A")
     true  (contains-lowercase? "a")
     false (contains-lowercase? "0")
@@ -34,7 +38,7 @@
     false (contains-lowercase? "")))
 
 (deftest test-contains-alphabet?
-  (are [x y] (= x y)
+  (equal-pairs
     true  (contains-alphabet? "A")
     true  (contains-alphabet? "a")
     false (contains-alphabet? "0")
@@ -42,7 +46,7 @@
     false (contains-alphabet? "")))
 
 (deftest test-contains-number?
-  (are [x y] (= x y)
+  (equal-pairs
     false (contains-number? "A")
     false (contains-number? "a")
     true  (contains-number? "0")
@@ -52,7 +56,7 @@
 (deftest test-length-range
   (let [f (length-range 3 4)
         g (length-range 3)]
-    (are [x y] (= x y)
+    (equal-pairs
       false (f "")
       false (f "aa")
       true  (f "aaa")
@@ -70,7 +74,7 @@
   (is (not (not-same-characters? ""))))
 
 (deftest test-not-sequential-password?
-  (are [x y] (= x y)
+  (equal-pairs
     true  (not-sequential-password? "hello")
     true  (not-sequential-password? "1253")
     false (not-sequential-password? "abcdefg")
@@ -81,7 +85,7 @@
     true  (not-sequential-password? "")))
 
 (deftest test-contains-symbol?
-  (are [x y] (= x y)
+  (equal-pairs
     false (contains-symbol? "A")
     false (contains-symbol? "a")
     false (contains-symbol? "0")
@@ -89,9 +93,12 @@
     false (contains-symbol? "")))
 
 (deftest test-not-contains-multi-byte-character?
-  (are [x y] (= x y)
+  (equal-pairs
     true  (not-contains-multi-byte-character? "hello")
     true  (not-contains-multi-byte-character? "!@#")
     false (not-contains-multi-byte-character? "はろー")
     true  (not-contains-multi-byte-character? "123")
     true  (not-contains-multi-byte-character? "")))
+
+; (deftest test-not-contains-sequence?
+;   (are ))
