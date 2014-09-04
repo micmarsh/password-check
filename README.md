@@ -14,11 +14,13 @@ password checker library for clojure
  * not-same-characters?
  * not-sequential-password?
  * not-contains-sequence?
- * not-cointains-repeats?
+ * not-contains-repeats?
  * not-contains-multi-byte-character?
  * length-range
 
 ## TODO
+
+Test case for `not-contains-repeats?`
 
 Combinators for `check`/`checker`
 
