@@ -106,3 +106,10 @@
     false (not-contains-sequence? "hello123")
     false (not-contains-sequence? "12abc3")
     false (not-contains-sequence? "heyyouabcdefgh")))
+
+(deftest test-not-contains-repeats?
+  (equal-pairs
+   true (not-contains-repeats? "whatsup")
+   false (not-contains-repeats? "yooosup")
+   true (not-contains-repeats? "greetings")
+   false (not-contains-repeats? "thisismypassssword")))

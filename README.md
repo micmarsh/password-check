@@ -20,12 +20,12 @@ password checker library for clojure
 
 ## TODO
 
-Test case for `not-contains-repeats?`
-
 Combinators for `check`/`checker`
+* remove old ones entirely
+* start with one that returns first failed, then one that returns all failed
 
 All kinds of documentation
-* docstrings for each of the funcitons above, a note on length-range
+* docstrings for each of the funcitons listed above, a note on length-range
 * a section in here on ways to use `check`/`checker`
 
 ## License
