@@ -27,6 +27,8 @@ All kinds of documentation
 * docstrings for each of the funcitons listed above, a note on length-range
 * a section in here on ways to use `check`/`checker`
 
+cljx
+
 ## License
 
 Copyright (C) 2014 Michael Marsh and 2011 Masashi Iizuka
