@@ -28,16 +28,6 @@
          (remove nil?)
          (combine-messages))))
 
-(defn combine-checkers-or
-  "return function which combining checker functions with OR operator"
-  [& fns] (fn [s] (not-nil? (some #(% s) fns))))
-
-(defn combine-checkers-and
-  "return function whick combining checker functions with AND operator"
-  [& fns] (fn [s] (every? #(% s) fns)))
-
-(def combine-checkers combine-checkers-and)
-
 (defn substrings [string amount]
   (let [bound (- (count string) amount)]
     (if (= bound 0)
