@@ -21,8 +21,7 @@ password checker library for clojure
 ## TODO
 
 Combinators for `check`/`checker`
-* remove old ones entirely
-* start with one that returns first failed, then one that returns all failed
+* new test namespace
 
 All kinds of documentation
 * docstrings for each of the funcitons listed above, a note on length-range

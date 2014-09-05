@@ -7,20 +7,6 @@
   `(are [x y] (= x y)
     ~@body))
 
-#_(deftest test-combine-checkers-or
-  (let [f (combine-checkers-or string? number?)]
-    (equal-pairs
-      true  (f "str")
-      true  (f 12)
-      false (f '(1 2)))))
-
-#_(deftest test-combine-checkers-and
-  (let [f (combine-checkers-and string? (fn [s] (= \a (first s))))]
-    (equal-pairs
-      true  (f "abc")
-      false (f "bac")
-      false (f 123))))
-
 (deftest test-contains-uppercase?
   (equal-pairs
     true  (contains-uppercase? "A")
