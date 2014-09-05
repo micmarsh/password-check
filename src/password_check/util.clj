@@ -2,6 +2,32 @@
 
 (def not-nil? (comp not nil?))
 
+(defn- return-failed [checker]
+  (let [result (checker password)]
+    (when (= :fail (:status result))
+      result)))
+
+(defn first-checker
+  [& checkers]
+  (fn [password]
+    (some return-failed checkers)))
+
+(defn- combine-messages [failures]
+  {:status :fail
+   :message
+   (->> failures
+        (map :message)
+        (interpose \newline)
+        (apply str))})
+
+(defn each-checker
+  [& checkers]
+  (fn [password]
+    (->> checkers
+         (map return-failed)
+         (remove nil?)
+         (combine-messages))))
+
 (defn combine-checkers-or
   "return function which combining checker functions with OR operator"
   [& fns] (fn [s] (not-nil? (some #(% s) fns))))
