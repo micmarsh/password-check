@@ -6,18 +6,18 @@
 
 (deftest test-contains-uppercase?
   (equal-pairs
-    true  (contains-uppercase? "A")
-    false (contains-uppercase? "a")
-    false (contains-uppercase? "0")
-    false (contains-uppercase? "!")
+    true  (contains-uppercase? "aaaaAa")
+    false (contains-uppercase? "baaaaaa")
+    false (contains-uppercase? "01234")
+    false (contains-uppercase? "heyo!")
     false (contains-uppercase? "")))
 
 (deftest test-contains-lowercase?
   (equal-pairs
-    false (contains-lowercase? "A")
-    true  (contains-lowercase? "a")
-    false (contains-lowercase? "0")
-    false (contains-lowercase? "!")
+    false (contains-lowercase? "aaaaAa")
+    true  (contains-lowercase? "baaaaaa")
+    false (contains-lowercase? "12340")
+    false (contains-lowercase? "fooo!")
     false (contains-lowercase? "")))
 
 (deftest test-contains-alphabet?
