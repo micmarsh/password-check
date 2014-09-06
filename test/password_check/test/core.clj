@@ -1,11 +1,8 @@
 (ns password-check.test.core
   (:use password-check.core
         password-check.util
-        clojure.test))
-
-(defmacro equal-pairs [& body]
-  `(are [x y] (= x y)
-    ~@body))
+        clojure.test)
+  (:require [password-check.test :refer (equal-pairs)]))
 
 (deftest test-contains-uppercase?
   (equal-pairs

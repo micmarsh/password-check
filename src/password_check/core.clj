@@ -13,7 +13,10 @@
 
 (def contains-lowercase? (partial re-contains? #"[a-z]"))
 
-(def contains-alphabet? (util/combine-checkers-or contains-lowercase? contains-uppercase?))
+(defn contains-alphabet? [password]
+  (->> [contains-lowercase? contains-uppercase?]
+       (some #(% password))
+       (util/not-nil?)))
 
 ; number checker
 (def contains-number? (partial re-contains? #"[0-9]"))
