@@ -23,7 +23,6 @@
 
 ; symbol checker
 (defn contains-symbol?
-  "return boolean whether password contain symbols or not"
   [password]
   (util/not-nil?
     (some #(let [in? (partial in-range? (int %))]
@@ -32,7 +31,7 @@
 
 ; character checker
 (defn not-same-characters?
-  "return boolean whether password characters are same or not
+  "return false if the passowrd is all the same characer
   ex) (not-same-characters? \"aaaaa\")
       ; false"
   [password]
@@ -58,7 +57,7 @@
 ; multi byte character checker
 ; cf. http://www.alqmst.co.jp/tech/040601.html
 (defn not-contains-multi-byte-character?
-  "return boolean whether password do not contain multi byte characters or not"
+  "return false if the password contains multi byte characters"
   [password]
   (every? #(let [i (int %)]
              (or (<= i 126) (= i 165) (= i 8254) ;\u007e, \u00a5, \u203e

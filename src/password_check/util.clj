@@ -2,6 +2,13 @@
 
 (def not-nil? (comp not nil?))
 
+(defn check [fail-message cond? pw]
+  (if (cond? pw)
+    {:status :pass}
+    {:status :fail :message fail-message}))
+
+(def checker #(partial check %1 %2))
+
 (defn- return-failed [password checker]
   (let [result (checker password)]
     (when (= :fail (:status result))
@@ -42,9 +49,3 @@
     (mapcat (partial substrings string)
             (range start (count string)))))
 
-(defn check [fail-message cond? pw]
-  (if (cond? pw)
-    {:status :pass}
-    {:status :fail :message fail-message}))
-
-(def checker #(partial check %1 %2))

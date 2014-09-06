@@ -20,14 +20,9 @@ password checker library for clojure
 
 ## TODO
 
-Combinators for `check`/`checker`
-* new test namespace
-
-All kinds of documentation
-* docstrings for each of the funcitons listed above, a note on length-range
-* a section in here on ways to use `check`/`checker`
-
-cljx
+* all this stuff is boring; create good helpers for dumping a dictionary into a database
+ * even that's^ a premature optimization, move onto the encryption cracker
+* cljx
 
 ## License
 
