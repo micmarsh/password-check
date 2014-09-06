@@ -21,3 +21,6 @@
    {:status :pass} (has-upper? "aaaaAaaa")
    upper-fail (:message (has-upper? "fooooo"))
    length-fail (:message (length? "too short"))))
+
+(deftest checker-combinators
+  )

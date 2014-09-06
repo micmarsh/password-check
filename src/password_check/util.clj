@@ -7,7 +7,7 @@
     (when (= :fail (:status result))
       result)))
 
-(defn first-checker
+(defn first-failure
   [& checkers]
   (fn [password]
     (some (partial password return-failed) checkers)))
@@ -20,7 +20,7 @@
         (interpose \newline)
         (apply str))})
 
-(defn each-checker
+(defn each-failure
   [& checkers]
   (fn [password]
     (->> checkers

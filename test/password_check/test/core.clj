@@ -14,10 +14,10 @@
 
 (deftest test-contains-lowercase?
   (equal-pairs
-    false (contains-lowercase? "aaaaAa")
-    true  (contains-lowercase? "baaaaaa")
+    false (contains-lowercase? "AAAAAA")
+    true  (contains-lowercase? "BAAAAaAA")
     false (contains-lowercase? "12340")
-    false (contains-lowercase? "fooo!")
+    false (contains-lowercase? "#$%!")
     false (contains-lowercase? "")))
 
 (deftest test-contains-alphabet?
