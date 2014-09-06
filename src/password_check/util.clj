@@ -10,7 +10,7 @@
 (defn first-failure
   [& checkers]
   (fn [password]
-    (some (partial password return-failed) checkers)))
+    (some (partial return-failed password) checkers)))
 
 (defn- combine-messages [failures]
   {:status :fail
@@ -24,7 +24,7 @@
   [& checkers]
   (fn [password]
     (->> checkers
-         (map return-failed)
+         (map (partial return-failed password))
          (remove nil?)
          (combine-messages))))
 
