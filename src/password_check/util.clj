@@ -20,12 +20,14 @@
     (some (partial return-failed password) checkers)))
 
 (defn- combine-messages [failures]
-  {:status :fail
-   :message
-   (->> failures
-        (map :message)
-        (interpose \newline)
-        (apply str))})
+  (if (empty? failures)
+      {:status :pass}
+      {:status :fail
+       :message
+       (->> failures
+            (map :message)
+            (interpose \newline)
+            (apply str))}))
 
 (defn each-failure
   [& checkers]
@@ -37,7 +39,7 @@
 
 (defn substrings [string amount]
   (let [bound (- (count string) amount)]
-    (if (= bound 0)
+    (if (zero? bound)
       [(apply str string)]
       (cons (apply str (take amount string))
             (lazy-seq (substrings (rest string) amount))))))
